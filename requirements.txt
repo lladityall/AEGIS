@@ -1,0 +1,24 @@
+# AEGIS Agent — Python dependencies
+# Total download: ~15 MB  (was 2 GB — sentence-transformers/PyTorch removed)
+#
+# Install:
+#   pip install -r requirements.txt
+#
+# Then pull the embedding model ONCE (274 MB, reuses Ollama you already have):
+#   ollama pull nomic-embed-text
+
+# ── Core ──────────────────────────────────────────────────
+ollama>=0.2.0          # Ollama client — covers LLM + embeddings
+
+# ── Document parsers ──────────────────────────────────────
+PyPDF2>=3.0.0          # PDF text extraction
+python-docx>=1.1.0     # DOCX text extraction
+
+# ── System stats (optional, for status bar) ───────────────
+psutil>=5.9.0          # CPU / RAM percentages
+
+# ── What was REMOVED and why ──────────────────────────────
+# sentence-transformers  → pulled torch (~1.2 GB) + transformers (~200 MB)
+# numpy                  → only needed for sentence-transformers matrix ops
+# Both replaced by Ollama's native /api/embeddings endpoint (nomic-embed-text)
+# Cosine similarity now done in pure Python stdlib (math module)
